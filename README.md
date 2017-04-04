@@ -30,20 +30,20 @@
      - **Grunt** : ``grunt --version`` **(grunt-cli v1.2.0, grunt v1.0.1)** is a task-based command line build tool for JavaScript projects. It is a bunch of built-in tasks that will get you pretty far, with the ability to build your own plugins and scripts that extend the basic functionality.
      - **Jasmine** is a software project management and comprehension tool. It manages all dependencies and different flows for building a project.
   7. **End to End Functional testing using Protractor** :
- 	Protractor is an open source end to end testing framework to test AngularJS application. Protractor is a Node.js program built on top of WebDriverJS.
+ 	 Protractor is an open source end to end testing framework to test AngularJS application. Protractor is a Node.js program built on top of WebDriverJS.
 
-    Start up a selenium server. By default, the tests expect the selenium server to be running at http://localhost:4444/wd/hub. A selenium server can be started with webdriver-manager which is included in bin/webdriver-manager.
+     Start up a selenium server. By default, the tests expect the selenium server to be running at http://localhost:4444/wd/hub. A selenium server can be started with webdriver-manager which is included in bin/webdriver-manager.
 
-    ``webdriver-manager update``
+     ``webdriver-manager update``
 
-    ``webdriver-manager start``
+     ``webdriver-manager start``
 
-    Protractor's test suite runs against the included test application. Start that up with
+     Protractor's test suite runs against the included test application. Start that up with
 
-    ``npm test``
+     ``npm test``
 
   8. **Reporting:**
-  Allure Reporting :Allure is a flexible, lightweight multi-language test report tool, with the possibility of adding to the report of additional information such as screenshots, logs and so on. It is a great degree simple to use and makes excellent execution reports.
+     Allure Reporting :Allure is a flexible, lightweight multi-language test report tool, with the possibility of adding to the report of additional information such as screenshots, logs and so on. It is a great degree simple to use and makes excellent execution reports.
 
 ### Execution Steps:
 1. Extract the downloaded project from git
