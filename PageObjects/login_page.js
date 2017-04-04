@@ -7,8 +7,8 @@ require('./dashboard_page.js');
 var login_page = function() {
 
     this.login_closeCookies = function() {
-        var login_closeCookies = element(by.xpath("//button[@type='button']"));
-        expect(login_closeCookies.isPresent()).toBe(true,'Cookies Not found');
+        var login_closeCookies = element(by.xpath("/html/body/form/div[3]/article/div/button"));
+        //expect(login_closeCookies.isPresent()).toBe(true,'Cookies Not found');
         return login_closeCookies;
 
     };

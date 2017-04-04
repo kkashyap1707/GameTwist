@@ -18,10 +18,10 @@ console.log("ENVIRONMENT IS :: "+process.env.NODE_ENV);
 console.log("USER TYPE IS ::"+process.env.NODE_USERTYPE);
 
 
-if (process.env.NODE_ENV === 'production' && process.env.NODE_USERTYPE == 'SASB') {
+if (process.env.NODE_ENV === 'production') {
     JSONData = JSONData_production;
 }
-else if(process.env.NODE_ENV === 'production'&& process.env.NODE_USERTYPE === 'NONSASB'){
+else if(process.env.NODE_ENV === 'QA'){
     JSONData = JSONData_production_nonsasb;
 }
 
@@ -48,14 +48,14 @@ describe('Sanity Test Cases', function () {
             });
         });
 
-        afterEach(function() {
+        /*afterEach(function() {
             //helperUtil.addStep("Keshav");
-        });
+        });*/
 
-        it('Login Test Case ', function () {
+        xit('Login Test Case ', function () {
 
             helperUtil.envInfo();
-            browser.driver.sleep(1500);
+            browser.driver.sleep(5000);
         });
 
         it('Login Test Case Bingo ', function () {
@@ -66,7 +66,9 @@ describe('Sanity Test Cases', function () {
             browser.driver.sleep(5000);
             dashboard_page.dashboard_Bingo().getText().then(function (bingo) {
                 console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HOLA :: "+bingo);
+                expect(bingo,'Bingo');
                 helperUtil.Reporter(bingo,'Bingo',"Bingo found Successfully","Bingo is not found in the list");
+                browser.driver.sleep(5000);
             });
         });
 

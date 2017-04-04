@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1491331148607" stop="1491331186789">
+	<name>Sanity Test Cases - Login Required</name>
+	<title>Sanity Test Cases - Login Required</title>
+	<test-cases>
+		<test-case start="1491331148607" stop="1491331148609" status="pending">
+			<name>Login Test Case </name>
+			<title>Login Test Case </title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+			<failure>
+				<message>This test has not been implemented yet</message>
+				<stack-trace></stack-trace>
+			</failure>
+		</test-case>
+		<test-case start="1491331148609" stop="1491331186788" status="passed">
+			<name>Login Test Case Bingo </name>
+			<title>Login Test Case Bingo </title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="User Type :: " value=""/>
+				<parameter kind="environment-variable" name="Environment :: " value="production"/>
+				<parameter kind="environment-variable" name="URL :: " value="https://www.gametwist.com/"/>
+			</parameters>
+			<steps>
+				<step start="1491331156794" stop="1491331156794" status="passed">
+					<name>scr1</name>
+					<title>scr1</title>
+					<attachments>
+					</attachments>
+					<steps>
+					</steps>
+				</step>
+				<step start="1491331156799" stop="1491331156799" status="passed">
+					<name>scr2</name>
+					<title>scr2</title>
+					<attachments>
+					</attachments>
+					<steps>
+					</steps>
+				</step>
+				<step start="1491331156800" stop="1491331156801" status="passed">
+					<name>scr3</name>
+					<title>scr3</title>
+					<attachments>
+					</attachments>
+					<steps>
+					</steps>
+				</step>
+				<step start="1491331156802" stop="1491331156802" status="passed">
+					<name>scr4</name>
+					<title>scr4</title>
+					<attachments>
+					</attachments>
+					<steps>
+					</steps>
+				</step>
+				<step start="1491331181784" stop="1491331181784" status="passed">
+					<name>Bingo found Successfully</name>
+					<title>Bingo found Successfully</title>
+					<attachments>
+					</attachments>
+					<steps>
+					</steps>
+				</step>
+			</steps>
+			<attachments>
+				<attachment title="scr1" source="5e94c477-b5c4-4038-8579-50934c4f6c56-attachment.png" type="image/png" size="912706"/>
+				<attachment title="scr2" source="e7820948-eb0f-49ee-a7d2-c46ff3cff928-attachment.png" type="image/png" size="914490"/>
+				<attachment title="scr3" source="5eba1930-be7a-4fd4-9eea-ae6615d8137d-attachment.png" type="image/png" size="957865"/>
+				<attachment title="scr4" source="8732f8cb-7b99-4d8d-8a82-6aef951df667-attachment.png" type="image/png" size="959997"/>
+			</attachments>
+		</test-case>
+		<test-case start="1491331186788" stop="1491331186788" status="pending">
+			<name>Login Test Case Poker</name>
+			<title>Login Test Case Poker</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+			<failure>
+				<message>This test has not been implemented yet</message>
+				<stack-trace></stack-trace>
+			</failure>
+		</test-case>
+		<test-case start="1491331186788" stop="1491331186788" status="pending">
+			<name>Login Test Case Casino</name>
+			<title>Login Test Case Casino</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+			<failure>
+				<message>This test has not been implemented yet</message>
+				<stack-trace></stack-trace>
+			</failure>
+		</test-case>
+	</test-cases>
+</ns2:test-suite>
