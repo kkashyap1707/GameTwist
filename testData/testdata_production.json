@@ -1,0 +1,23 @@
+{
+  "AutoTextList": [
+    {
+      "BASE_URL": "https://www.gametwist.com/",
+      "NickName": "kkashyap1707",
+      "Password": "Kkashyap@1408",
+      "InvalidEMailID": "Q1004@game.com",
+      "InvalidUserName": "Q1004",
+      "InvalidPassword": "Qsb99(",
+      "BlankUserName": "",
+      "BlankPassword": ""
+    }, {
+      "Email": "kkashyap1707@gmail.com",
+      "BlankEmail": "",
+      "InvalidEmail": "kkashyap1707gmail.com.com",
+      "FirstName": "Keshav",
+      "LastName": "Kashyap",
+      "Company": "Testing",
+      "WorkEmail": "kkashyap1707@gmail.com",
+      "TelephoneNumber": "1234567890"
+    }
+  ]
+}
