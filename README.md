@@ -1,4 +1,4 @@
-# TruValue Labs
+# GreenTube
 
 ## How to setup and run Functional Automation
 
@@ -18,7 +18,7 @@ As the nodejs package contains the nodejs binary as well as ``npm``, so we don't
 
   4. **Download the Project from GIT:-**
 
-  	``git clone https://github.com/kkashyap1707/TruValue/ ``
+  	``git clone https://github.com/kkashyap1707/GameTwist.git ``
 
 ### Tools and Technologies Used :-
   1. **Node Version** : ``node -v`` **(v6.9.1)**
@@ -71,27 +71,8 @@ As the nodejs package contains the nodejs binary as well as ``npm``, so we don't
 | Module Name    | Production    |Staging       | DevApp    |QA       |
 | -------------  | --------------|--------------|-----------|------------|
 | Regression Test|NODE_ENV=production NODE_USERTYPE=NONSASB npm test| NODE_ENV=staging NODE_USERTYPE=NONSASB npm test|NODE_ENV=devapp NODE_USERTYPE=SASB npm test|NODE_ENV=QA NODE_USERTYPE=SASB npm test|
-| About          |NODE_ENV=production NODE_USERTYPE=NONSASB npm run about-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run about-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run about-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run about-test               |
-| Benchmark      |NODE_ENV=production NODE_USERTYPE=NONSASB npm run benchmarks-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run benchmarks-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run benchmarks-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run benchmarks-test|
-| Blog           |NODE_ENV=production NODE_USERTYPE=NONSASB npm run blog-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run blog-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run blog-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run blog-test|
-| Dashboard      |NODE_ENV=production NODE_USERTYPE=NONSASB npm run dashboard-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run dashboard-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run dashboard-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run dashboard-test|
-| FAQ            |NODE_ENV=production NODE_USERTYPE=NONSASB npm run faq-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run faq-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run faq-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run faq-test|
-| Forgot Password|NODE_ENV=production NODE_USERTYPE=NONSASB npm run forgotPassword-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run forgotPassword-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run forgotPassword-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run forgotPassword-test|
-| Help Centre    |NODE_ENV=production NODE_USERTYPE=NONSASB npm run helpCentre-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run helpCentre-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run helpCentre-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run helpCentre-test|
-| Industries     |NODE_ENV=production NODE_USERTYPE=NONSASB npm run industries-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run industries-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run industries-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run industries-test|
-| Lead Form      |NODE_ENV=production NODE_USERTYPE=NONSASB npm run leadForm-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run leadForm-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run leadForm-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run leadForm-test|
 | Login          |NODE_ENV=production NODE_USERTYPE=NONSASB npm run login-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run login-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run login-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run login-test|
-| Portfolio      |NODE_ENV=production NODE_USERTYPE=NONSASB npm run  portfolio-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run  portfolio-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run  portfolio-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run  portfolio-test|
-| Privacy        |NODE_ENV=production NODE_USERTYPE=NONSASB npm run privacy-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run privacy-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run privacy-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run privacy-test|
 | SANITY         |NODE_ENV=production NODE_USERTYPE=NONSASB npm run sanity-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run sanity-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run sanity-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run sanity-test|
-| Search         |NODE_ENV=production NODE_USERTYPE=NONSASB npm run search-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run search-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run search-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run search-test|
-| Sectors        |NODE_ENV=production NODE_USERTYPE=NONSASB npm run sectors-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run sectors-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run sectors-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run sectors-test|
-| Settings       |NODE_ENV=production NODE_USERTYPE=NONSASB npm run settings-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run settings-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run settings-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run settings-test|
-| SideMenu       |NODE_ENV=production NODE_USERTYPE=NONSASB npm run sideMenu-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run sideMenu-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run sideMenu-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run sideMenu-test|
-| Terms          |NODE_ENV=production NODE_USERTYPE=NONSASB npm run terms-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run terms-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run terms-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run terms-test|
-| User Management|NODE_ENV=production NODE_USERTYPE=NONSASB npm run userManagement-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run userManagement-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run userManagement-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run userManagement-test|
-| Watchlist      |NODE_ENV=production NODE_USERTYPE=NONSASB npm run watchlist-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run watchlist-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run watchlist-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run watchlist-test|
-
 
 
 
