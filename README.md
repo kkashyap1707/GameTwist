@@ -2,25 +2,25 @@
 
 ## How to setup and run Functional Automation
 
-### Pre-requisites :-
+### Pre-requisites:
   1.  **Java** should be installed on the system.
 
-  2.  **Setup Node :-**
+  2.  **Setup Node:**
   		For setting up protractor we have to run below mentioned command :-
 
        ``sudo apt-get install nodejs``
 
-As the nodejs package contains the nodejs binary as well as ``npm``, so we don't need to install ``npm`` separately.
+      As the nodejs package contains the nodejs binary as well as ``npm``, so we don't need to install ``npm`` separately.
 
-  3. **Setup Maven:-** To install maven we have to run below mentioned command :-
-    
-    ``sudo apt-get install maven``
+  3. **Setup Maven:** To install maven we have to run below mentioned command :
+  
+       ``sudo apt-get install maven``
 
-  4. **Download the Project from GIT:-**
+  4. **Download the Project from GIT:**
 
   	``git clone https://github.com/kkashyap1707/GameTwist.git ``
 
-### Tools and Technologies Used :-
+### Tools and Technologies Used :
   1. **Node Version** : ``node -v`` **(v6.9.1)**
   2. **npm Version** : ``npm -v`` **(3.10.8)**
   3. **Java Version** : ``java -version`` **(1.8.)**
@@ -42,24 +42,24 @@ As the nodejs package contains the nodejs binary as well as ``npm``, so we don't
 
     ``npm test``
 
-  8. **Reporting :**
+  8. **Reporting:**
   Allure Reporting :Allure is a flexible, lightweight multi-language test report tool, with the possibility of adding to the report of additional information such as screenshots, logs and so on. It is a great degree simple to use and makes excellent execution reports.
 
-### Execution Steps :-
+### Execution Steps:
 1. Extract the downloaded project from git
 2. Open Terminal
 3. Go to the project location
-4. Enter the below mentioned commands to download the dependency of the project :-
+4. Enter the below mentioned commands to download the dependency of the project:
 	**Download Dependency of Project** :  **``npm install``**
 	On Successful compilation of the project it will download all the dependencies like (Grunt,Jshint,grunt-protractor-runner Allure Reporting etc.)
 5. Enter the below mentioned command to update Selenium WebDriver
 	**``npm run update``**
-5. Enter the below mentioned commands to compile and run the whole project :-
-	**Run Project** : **``NODE_ENV=production NODE_USERTYPE=NONSASB npm test ``**
-	In this case, you can specify Environment type and User type. Environments type can be : production , staging, devapp and QA while USERTYPE are : SASB and NONSASB
-6. To run the specific module, we have to pass below mentiioned command :-
-	**Run Specific Module** :  **``NODE_ENV=EnvironmentName NODE_USERTYPE=Usertype npm run script-name``**
-    **e.g.** :  **``NODE_ENV=production NODE_USERTYPE=NONSASB npm run terms-test``**
+5. Enter the below mentioned commands to compile and run the whole project:
+	**Run Project** : **``NODE_ENV=production npm test ``**
+	In this case, you can specify Environment type and User type. Environments type can be : production and QA
+6. To run the specific module, we have to pass below mentioned command:
+	**Run Specific Module** :  **``NODE_ENV=EnvironmentName npm run script-name``**
+    **e.g.** :  **``NODE_ENV=production npm run login-test``**
    
 **Sample** 
 
@@ -68,11 +68,11 @@ As the nodejs package contains the nodejs binary as well as ``npm``, so we don't
 
 
 
-| Module Name    | Production    |Staging       | DevApp    |QA       |
-| -------------  | --------------|--------------|-----------|------------|
-| Regression Test|NODE_ENV=production NODE_USERTYPE=NONSASB npm test| NODE_ENV=staging NODE_USERTYPE=NONSASB npm test|NODE_ENV=devapp NODE_USERTYPE=SASB npm test|NODE_ENV=QA NODE_USERTYPE=SASB npm test|
-| Login          |NODE_ENV=production NODE_USERTYPE=NONSASB npm run login-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run login-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run login-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run login-test|
-| SANITY         |NODE_ENV=production NODE_USERTYPE=NONSASB npm run sanity-test|NODE_ENV=staging NODE_USERTYPE=NONSASB npm run sanity-test|NODE_ENV=devapp NODE_USERTYPE=SASB npm run sanity-test|NODE_ENV=QA NODE_USERTYPE=SASB npm run sanity-test|
+| Module Name     |    Production    |    QA          |
+| -------------   | -----------------|----------------|
+| Regression Test | NODE_ENV=production npm test| NODE_ENV=QA npm test|
+| Login           | NODE_ENV=production npm run login-test|NODE_ENV=QA npm run login-test|
+| SANITY          | NODE_ENV=production npm run sanity-test|NODE_ENV=QA npm run sanity-test|
 
 
 
