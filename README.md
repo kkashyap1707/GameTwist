@@ -18,7 +18,7 @@
 
   4. **Download the Project from GIT:**
 
-  	``git clone https://github.com/kkashyap1707/GameTwist.git ``
+  	 ``git clone https://github.com/kkashyap1707/GameTwist.git ``
 
 ### Tools and Technologies Used :
   1. **Node Version** : ``node -v`` **(v6.9.1)**
