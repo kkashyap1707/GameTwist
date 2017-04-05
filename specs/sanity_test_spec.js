@@ -10,19 +10,19 @@ var util = require('util'),
     helperUtil = require('./../Utilities/helperUtil'),
 
     JSONData_production = require('./../testData/testdata_production.json'),
-    JSONData_production_nonsasb = require('./../testData/testdata_production_nonsasb.json'),
+    JSONData_QA = require('./../testData/testdata_QA.json'),
 
     JSONData;
 
 console.log("ENVIRONMENT IS :: "+process.env.NODE_ENV);
-console.log("USER TYPE IS ::"+process.env.NODE_USERTYPE);
+
 
 
 if (process.env.NODE_ENV === 'production') {
     JSONData = JSONData_production;
 }
 else if(process.env.NODE_ENV === 'QA'){
-    JSONData = JSONData_production_nonsasb;
+    JSONData = JSONData_QA;
 }
 
 
@@ -30,32 +30,38 @@ describe('Sanity Test Cases', function () {
 
     describe('- Login Required', function () {
 
-        beforeEach(function() {
+        beforeAll(function() {
             browser.ignoreSynchronization = true;
             browser.get(JSONData.AutoTextList[0].BASE_URL);
             //isAngularSite(false);
+
             login_page.login_closeCookies().click().then(function () {
-                helperUtil.addStepsWithScreenshot('scr1');
-                login_page.login_nickName().sendKeys(JSONData.AutoTextList[0].NickName);
-                browser.driver.sleep(1500);
-                helperUtil.addStepsWithScreenshot('scr2');
-                login_page.login_password().sendKeys(JSONData.AutoTextList[0].Password);
-                browser.driver.sleep(1500);
-                helperUtil.addStepsWithScreenshot('scr3');
-                login_page.login_clickLogIn().click();
-                helperUtil.addStepsWithScreenshot('scr4');
-                browser.driver.sleep(7000);
+                helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
+            });
+            browser
+                .getTitle().then(function(webpagetitle){
+                console.log(">>>>>>>>>>HOLA WEB_PAGE_TITLE :: "+webpagetitle);
+                expect(webpagetitle,'Insight360.io','User Logged In Successfully','WebPage Title should be Insight360.io');
+
             });
         });
+
+        beforeEach(function () {
+            dashboard_page.dashboard_Logo().click();
+            browser.driver.sleep(1500);
+        });
+
 
         /*afterEach(function() {
             //helperUtil.addStep("Keshav");
         });*/
 
-        xit('Login Test Case ', function () {
+        it('Login Test Case ', function () {
 
             helperUtil.envInfo();
             browser.driver.sleep(5000);
+
+
         });
 
         it('Login Test Case Bingo ', function () {
@@ -63,11 +69,15 @@ describe('Sanity Test Cases', function () {
             helperUtil.envInfo();
             browser.driver.sleep(5000);
             dashboard_page.dashboard_Bingo().click();
+            browser
+                .getTitle().then(function(webpagetitle){
+                console.log(">>>>>>>>>>HOLA BINGO :: "+webpagetitle);
+                helperUtil.Reporter_toBe(webpagetitle,'Free Bingo Games | Play now for Free at GameTwist','User Logged In Successfully','WebPage Title should be Insight360.io');
+
+            });
             browser.driver.sleep(5000);
             dashboard_page.dashboard_Bingo().getText().then(function (bingo) {
-                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HOLA :: "+bingo);
-                expect(bingo,'Bingo');
-                helperUtil.Reporter(bingo,'Bingo',"Bingo found Successfully","Bingo is not found in the list");
+                helperUtil.Reporter_toBe(bingo,'Bingo',"Bingo found Successfully","Bingo is not found in the list");
                 browser.driver.sleep(5000);
             });
         });

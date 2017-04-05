@@ -2,11 +2,15 @@
  * Created by Keshav on 04/04/2017.
  */
 
-
-var util = require('util');
-var helperUtil = require('./../Utilities/helperUtil');
-
 var dashboard_page = function() {
+
+
+    this.dashboard_Logo = function () {
+        var dashboard_Logo = element(by.css("a.branding__logo"));
+        expect(dashboard_Logo.isPresent()).toBe(true,'Dashboard Logo Element Not found');
+
+        return dashboard_Logo;
+    };
 
     this.dashboard_Slots = function() {
         var dashboard_Slots =element(by.linkText("Slots"));

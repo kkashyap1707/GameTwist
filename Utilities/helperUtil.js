@@ -8,12 +8,13 @@ var helperUtil = {},
     JSONData_production = require('./../testData/testdata_production.json'),
     JSONData;
 
+    console.log('HOLA login page object received');//JSON.stringify(login_page));
+
     if (process.env.NODE_ENV === 'production') {
         JSONData = JSONData_production;
     }
 
     helperUtil.envInfo = function () {
-        helperUtil.addEnvironment("User Type :: ",process.env.NODE_USERTYPE);
         helperUtil.addEnvironment("Environment :: ",process.env.NODE_ENV);
         helperUtil.addEnvironment("URL :: ",JSONData.AutoTextList[0].BASE_URL);
     };
@@ -43,21 +44,18 @@ var helperUtil = {},
              .perform();
      };
 
-    helperUtil.login = function (username, password) {
-    login_page.login_userName().sendKeys(username);
+    helperUtil.login = function (userName,password) {
+        console.log(JSON.stringify("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+login_page));
+        login_page.login_nickName().sendKeys(userName);
         browser.driver.sleep(1500);
-    login_page.login_password().sendKeys(password);
+        login_page.login_password().sendKeys(password);
         browser.driver.sleep(1500);
-    login_page.login_clickContinue().click();
-    browser.driver.sleep(7000);
-    browser
-        .getTitle().then(function(webpagetitle){
-            expect(webpagetitle,'Insight360.io','User Logged In Successfully','WebPage Title should be Insight360.io');
+        login_page.login_clickLogIn().click();
+        browser.driver.sleep(7000);
 
-        });
     };
 
-    helperUtil.Reporter = function (Expect,expectedResult,passMessage,failMessage) {
+    helperUtil.Reporter_toBe = function (Expect, expectedResult, passMessage, failMessage) {
         expect(Expect).toBe(expectedResult);
         if(Expect === expectedResult){
             helperUtil.addStep(passMessage);
