@@ -5,13 +5,6 @@
 var dashboard_page = function() {
 
 
-    this.dashboard_Logo = function () {
-        var dashboard_Logo = element(by.css("a.branding__logo"));
-        expect(dashboard_Logo.isPresent()).toBe(true,'Dashboard Logo Element Not found');
-
-        return dashboard_Logo;
-    };
-
     this.dashboard_Slots = function() {
         var dashboard_Slots =element(by.linkText("Slots"));
         expect(dashboard_Slots.isPresent()).toBe(true,'Dashboard Slots Element Not found');
@@ -39,5 +32,30 @@ var dashboard_page = function() {
 
         return dashboard_Poker;
     };
+
+    this.dashboard_Logout = function () {
+        var dashboard_Logout = element(by.css("button.btn--link.js-logout"));
+        expect(dashboard_Logout.isPresent()).toBe(true,'Logout Element Not found');
+
+        return dashboard_Logout;
+    };
+
+    this.dashboard_Search = function () {
+        var dashboard_Search = element(by.css("#ctl00_cphNavAndSearch_ctl01_gameSearch"));
+        expect(dashboard_Search.isPresent()).toBe(true,'Search Box Element Not found');
+
+        return dashboard_Search;
+    };
+
+    this.dashboard_Nickname = function () {
+        var dashboard_Nickname = element(by.css("span.nickname"));
+        expect(dashboard_Nickname.isPresent()).toBe(true,'Nickname Element Not found');
+
+        return dashboard_Nickname;
+    };
+
+
+
+
 };
 module.exports = new dashboard_page();

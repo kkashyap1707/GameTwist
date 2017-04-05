@@ -5,8 +5,10 @@
 
 var util = require('util'),
 
-    login_page = require('./../PageObjects/login_page.js'),
+    common_page = require('./../PageObjects/common_page.js'),
     dashboard_page = require('./../PageObjects/dashboard_page.js'),
+    login_page = require('./../PageObjects/login_page.js'),
+
     helperUtil = require('./../Utilities/helperUtil'),
 
     JSONData_production = require('./../testData/testdata_production.json'),
@@ -14,93 +16,130 @@ var util = require('util'),
 
     JSONData;
 
-console.log("ENVIRONMENT IS :: "+process.env.NODE_ENV);
+    console.log("ENVIRONMENT IS :: "+process.env.NODE_ENV);
+
+    if (process.env.NODE_ENV === 'production') {
+        JSONData = JSONData_production;
+    }
+    else if(process.env.NODE_ENV === 'QA'){
+        JSONData = JSONData_QA;
+    }
 
 
+    describe('Sanity Test Cases', function () {
 
-if (process.env.NODE_ENV === 'production') {
-    JSONData = JSONData_production;
-}
-else if(process.env.NODE_ENV === 'QA'){
-    JSONData = JSONData_QA;
-}
+        describe('- Login Required', function () {
 
+            beforeAll(function() {
+                browser.ignoreSynchronization = true;
+                browser.get(JSONData.AutoTextList[0].BASE_URL);
 
-describe('Sanity Test Cases', function () {
-
-    describe('- Login Required', function () {
-
-        beforeAll(function() {
-            browser.ignoreSynchronization = true;
-            browser.get(JSONData.AutoTextList[0].BASE_URL);
-            //isAngularSite(false);
-
-            login_page.login_closeCookies().click().then(function () {
-                helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
+                login_page.login_closeCookies().click().then(function () {
+                    helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
+                });
+                browser
+                    .getTitle().then(function(webpagetitle){
+                    console.log(">>>>>>>>>>HOLA WEB_PAGE_TITLE :: "+webpagetitle);
+                    expect(webpagetitle,'GameTwist Casino, Games & more | Play for Free','User Logged In Successfully','WebPage Title should be GameTwist Casino, Games & more | Play for Free');
+                });
             });
-            browser
-                .getTitle().then(function(webpagetitle){
-                console.log(">>>>>>>>>>HOLA WEB_PAGE_TITLE :: "+webpagetitle);
-                expect(webpagetitle,'Insight360.io','User Logged In Successfully','WebPage Title should be Insight360.io');
 
+            beforeEach(function () {
+                common_page.common_Logo().click();
+                browser.driver.sleep(1500);
             });
-        });
-
-        beforeEach(function () {
-            dashboard_page.dashboard_Logo().click();
-            browser.driver.sleep(1500);
-        });
 
 
-        /*afterEach(function() {
-            //helperUtil.addStep("Keshav");
-        });*/
-
-        it('Login Test Case ', function () {
-
-            helperUtil.envInfo();
-            browser.driver.sleep(5000);
-
-
-        });
-
-        it('Login Test Case Bingo ', function () {
-
-            helperUtil.envInfo();
-            browser.driver.sleep(5000);
-            dashboard_page.dashboard_Bingo().click();
-            browser
-                .getTitle().then(function(webpagetitle){
-                console.log(">>>>>>>>>>HOLA BINGO :: "+webpagetitle);
-                helperUtil.Reporter_toBe(webpagetitle,'Free Bingo Games | Play now for Free at GameTwist','User Logged In Successfully','WebPage Title should be Insight360.io');
-
+            afterAll(function() {
+                dashboard_page.dashboard_Nickname().click().then(function () {
+                    browser.driver.sleep(1000);
+                    dashboard_page.dashboard_Logout().click();
+                });
             });
-            browser.driver.sleep(5000);
-            dashboard_page.dashboard_Bingo().getText().then(function (bingo) {
-                helperUtil.Reporter_toBe(bingo,'Bingo',"Bingo found Successfully","Bingo is not found in the list");
+
+            it('Login Test Case ', function () {
+
+                helperUtil.envInfo();
                 browser.driver.sleep(5000);
+
             });
-        });
 
-        xit('Login Test Case Poker', function () {
+            it('Test Case Scenario ', function () {
 
-            helperUtil.envInfo();
-            browser.driver.sleep(5000);
-            dashboard_page.dashboard_Poker().click().then(function () {
+                helperUtil.envInfo();
                 browser.driver.sleep(5000);
-                helperUtil.addStepsWithScreenshot('Poker');
-            });
-        });
+                dashboard_page.dashboard_Bingo().click();
+                browser
+                    .getTitle().then(function(bingoWebPageTitle){
+                    console.log(">>>>>>>>>>HOLA BINGO :: "+bingoWebPageTitle);
+                    helperUtil.Reporter_toBe(bingoWebPageTitle,'Free Bingo Games | Play now for Free at GameTwist','User redirected to Bingo page','WebPage Title should be Free Bingo Games | Play now for Free at GameTwist');
 
-        xit('Login Test Case Casino', function () {
-
-            helperUtil.envInfo();
-            browser.driver.sleep(5000);
-            dashboard_page.dashboard_Casino().click().then(function () {
-                browser.driver.sleep(5000);
-                helperUtil.addStepsWithScreenshot('Casino');
+                    browser.driver.sleep(5000);
+                    dashboard_page.dashboard_Bingo().getText().then(function (bingo) {
+                        helperUtil.Reporter_toBe(bingo,'Bingo',"Bingo Page found Successfully","Bingo not found in the list");
+                        browser.driver.sleep(5000);
                     });
+                });
+
+                dashboard_page.dashboard_Casino().click();
+                browser
+                    .getTitle().then(function(casinoWebPageTitle){
+                    console.log(">>>>>>>>>>HOLA CASINO :: "+casinoWebPageTitle);
+                    helperUtil.Reporter_toBe(casinoWebPageTitle,'Free Casino Games Online | Play for Free at GameTwist','User redirected to Casino page','WebPage Title should be Free Casino Games Online | Play for Free at GameTwist');
+
+                    browser.driver.sleep(5000);
+                    dashboard_page.dashboard_Casino().getText().then(function (casino) {
+                        helperUtil.Reporter_toBe(casino,'Casino',"Casino Page found Successfully","Casino not found in the list");
+                        browser.driver.sleep(5000);
+                    });
+                });
+
+                dashboard_page.dashboard_Poker().click();
+                browser
+                    .getTitle().then(function(pokerWebPageTitle){
+                    console.log(">>>>>>>>>>HOLA POKER :: "+pokerWebPageTitle);
+                    helperUtil.Reporter_toBe(pokerWebPageTitle,'Poker Free Online Play | GameTwist Casino','User redirected to Poker page','WebPage Title should be Poker Free Online Play | GameTwist Casino');
+
+                    browser.driver.sleep(5000);
+                    dashboard_page.dashboard_Poker().getText().then(function (poker) {
+                        helperUtil.Reporter_toBe(poker,'Poker',"Poker Page found Successfully","Poker not found in the list");
+                        browser.driver.sleep(5000);
+                    });
+                });
+
+                dashboard_page.dashboard_Slots().click();
+                browser
+                    .getTitle().then(function(slotsWebPageTitle){
+                    console.log(">>>>>>>>>>HOLA SLOTS :: "+slotsWebPageTitle);
+                    helperUtil.Reporter_toBe(slotsWebPageTitle,'Free Slot Games online | Play for Free at GameTwist','User redirected to Slots page','WebPage Title should be Free Slot Games online | Play for Free at GameTwist');
+
+                    browser.driver.sleep(5000);
+                    dashboard_page.dashboard_Slots().getText().then(function (slots) {
+                        helperUtil.Reporter_toBe(slots,'Slots',"Slots Page found Successfully","Slots is not found in the list");
+                        browser.driver.sleep(5000);
+                    });
+                });
+
+            });
+
+            xit('Login Test Case Poker', function () {
+
+                helperUtil.envInfo();
+                browser.driver.sleep(5000);
+                dashboard_page.dashboard_Poker().click().then(function () {
+                    browser.driver.sleep(5000);
+                    helperUtil.addStepsWithScreenshot('Poker');
+                });
+            });
+
+            xit('Login Test Case Casino', function () {
+
+                helperUtil.envInfo();
+                browser.driver.sleep(5000);
+                dashboard_page.dashboard_Casino().click().then(function () {
+                    browser.driver.sleep(5000);
+                    helperUtil.addStepsWithScreenshot('Casino');
+                });
             });
         });
-
     });
