@@ -45,6 +45,7 @@ var util = require('util'),
             });
 
             beforeEach(function () {
+                browser.driver.sleep(1500);
                 common_page.common_Logo().click();
                 browser.driver.sleep(1500);
             });
@@ -59,14 +60,35 @@ var util = require('util'),
 
             it('Login Test Case ', function () {
 
+                helperUtil.setFeature('Practical task');
                 helperUtil.envInfo();
+                helperUtil.setDescription(" 1. Successful Login "+
+                    " 2. Close any popups IF they appear. " +
+                    " 3. Navigate through the pages Slots, Bingo, Casino & Poker and check if you are on the correct page after each navigation." +
+                    " 4. Search for 'Slot on the website in the search games section." +
+                    " 5. Count a number of shown games and select one of them (but not the first or last one)." +
+                    " 6. Confirm that you are on the correct game page." +
+                    " 7. Change the language from English to German." +
+                    " 8. Successfully logout.");
+
+
                 browser.driver.sleep(5000);
 
             });
 
-            it('Test Case Scenario ', function () {
+            xit('Test Case Scenario ', function () {
 
+                helperUtil.setFeature('Practical task');
                 helperUtil.envInfo();
+                helperUtil.setDescription("1. Successful Login " +
+                    "2. Close any popups IF they appear. " +
+                    "3. Navigate through the pages Slots, Bingo, Casino & Poker and check if you are on the correct page after each navigation." +
+                    "4. Search for 'Slot on the website in the search games section." +
+                    "5. Count a number of shown games and select one of them (but not the first or last one)." +
+                    "6. Confirm that you are on the correct game page." +
+                    "7. Change the language from English to German." +
+                    "8. Successfully logout.");
+
                 browser.driver.sleep(5000);
                 dashboard_page.dashboard_Bingo().click();
                 browser
@@ -120,26 +142,9 @@ var util = require('util'),
                     });
                 });
 
+                common_page.common_Search().sendKeys('Slot');
+                browser.driver.sleep(9000);
             });
 
-            xit('Login Test Case Poker', function () {
-
-                helperUtil.envInfo();
-                browser.driver.sleep(5000);
-                dashboard_page.dashboard_Poker().click().then(function () {
-                    browser.driver.sleep(5000);
-                    helperUtil.addStepsWithScreenshot('Poker');
-                });
-            });
-
-            xit('Login Test Case Casino', function () {
-
-                helperUtil.envInfo();
-                browser.driver.sleep(5000);
-                dashboard_page.dashboard_Casino().click().then(function () {
-                    browser.driver.sleep(5000);
-                    helperUtil.addStepsWithScreenshot('Casino');
-                });
-            });
         });
     });

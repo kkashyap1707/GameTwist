@@ -13,7 +13,7 @@ var common_page = function() {
     };
 
     this.common_Search = function () {
-        var common_Search = element(by.css("a.branding__logo"));
+        var common_Search = element(by.css("#ctl00_cphNavAndSearch_ctl01_gameSearch"));
         expect(common_Search.isPresent()).toBe(true,'Search Box Element Not found');
 
         return common_Search;
