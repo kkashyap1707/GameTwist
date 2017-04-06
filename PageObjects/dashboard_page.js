@@ -6,28 +6,28 @@ var dashboard_page = function() {
 
 
     this.dashboard_Slots = function() {
-        var dashboard_Slots =element(by.linkText("Slots"));
+        var dashboard_Slots =element(by.xpath("//nav[@id='navigation-main']/ul/li[1]/a"));
         expect(dashboard_Slots.isPresent()).toBe(true,'Dashboard Slots Element Not found');
 
         return dashboard_Slots;
     };
 
     this.dashboard_Bingo = function() {
-        var dashboard_Bingo =element(by.linkText("Bingo"));
+        var dashboard_Bingo =element(by.xpath("//nav[@id='navigation-main']/ul/li[2]/a"));
         expect(dashboard_Bingo.isPresent()).toBe(true,'Dashboard Bingo Element Not found');
 
         return dashboard_Bingo;
     };
 
     this.dashboard_Casino = function() {
-        var dashboard_Casino =element(by.linkText("Casino"));
+        var dashboard_Casino =element(by.xpath("//nav[@id='navigation-main']/ul/li[3]/a"));
         expect(dashboard_Casino.isPresent()).toBe(true,'Dashboard Casino Element Not found');
 
         return dashboard_Casino;
     };
 
     this.dashboard_Poker = function() {
-        var dashboard_Poker =element(by.linkText("Poker"));
+        var dashboard_Poker =element(by.xpath("//nav[@id='navigation-main']/ul/li[4]/a"));
         expect(dashboard_Poker.isPresent()).toBe(true,'Dashboard Poker Element Not found');
 
         return dashboard_Poker;
@@ -38,13 +38,6 @@ var dashboard_page = function() {
         expect(dashboard_Logout.isPresent()).toBe(true,'Logout Element Not found');
 
         return dashboard_Logout;
-    };
-
-    this.dashboard_Search = function () {
-        var dashboard_Search = element(by.css("#ctl00_cphNavAndSearch_ctl01_gameSearch"));
-        expect(dashboard_Search.isPresent()).toBe(true,'Search Box Element Not found');
-
-        return dashboard_Search;
     };
 
     this.dashboard_Nickname = function () {
