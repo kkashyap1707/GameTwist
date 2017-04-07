@@ -5,6 +5,14 @@
 var common_page = function() {
 
 
+
+    this.common_DailyBonus = function () {
+        var common_DailyBonus = element(by.css("#daily-bonus-popup > div > div > div > span > a"));
+        //expect(common_DailyBonus.isPresent()).toBe(true,'Daily Bonus Element Not found');
+
+        return common_DailyBonus;
+    };
+
     this.common_Logo = function () {
         var common_Logo = element(by.css("a.branding__logo"));
         expect(common_Logo.isPresent()).toBe(true,'Dashboard Logo Element Not found');
@@ -33,7 +41,7 @@ var common_page = function() {
     };
 
     this.common_LanguageDropDown = function () {
-        var common_LanguageDropDown = element(by.css("i.icon-arrow-down"));
+        var common_LanguageDropDown = element(by.xpath("//*[@id='branding']/div[2]/div[1]/div[4]/ul/li[5]/div[1]/span/i"));
         expect(common_LanguageDropDown.isPresent()).toBe(true,'Language Drop-Down Element Not found');
 
         return common_LanguageDropDown;

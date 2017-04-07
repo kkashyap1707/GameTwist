@@ -18,9 +18,7 @@ var util = require('util'),
     JSONData;
 
 
-    var JSONLang = require('./../language/lang_'+ process.env.NODE_LANG +'.json');
-    console.log("LANGUAGE IS :: "+process.env.NODE_LANG);
-    console.log("HOLA :: "+JSONLang.AutoTextList[0].Language);
+    var JSONLang;
 
     console.log("ENVIRONMENT IS :: "+process.env.NODE_ENV);
 
@@ -32,9 +30,9 @@ var util = require('util'),
     }
 
 
-    describe('Sanity Test Cases', function () {
+    describe('Assessment_tasks', function () {
 
-        describe('- Login Required', function () {
+        describe('- Approach_1', function () {
 
             beforeAll(function() {
                 browser.ignoreSynchronization = true;
@@ -42,11 +40,28 @@ var util = require('util'),
 
                 login_page.login_closeCookies().click().then(function () {
                     helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
-                });
-                browser
-                    .getTitle().then(function(webpagetitle){
-                    console.log(">>>>>>>>>>HOLA WEB_PAGE_TITLE :: "+webpagetitle);
-                    expect(webpagetitle,JSONLang.AutoTextList[0].HomePageTitle,'User Logged In Successfully','WebPage Title should be '+JSONLang.AutoTextList[0].HomePageTitle);
+
+                    browser.getCurrentUrl().then(function (currentURL) {
+                        JSONLang = require('./../language/lang_'+ currentURL.split('/')[3] +'.json');
+                        console.log("Language is :: "+JSONLang.AutoTextList[0].Language);
+
+
+                        common_page.common_DailyBonus().isPresent().then(function (isDisplayed){
+
+                            if(isDisplayed === true) {
+                                common_page.common_DailyBonus().click();
+                            }
+                            else{
+                                console.log('No Daily Bonus Pop-up found');
+                            }
+
+                        });
+                    });
+                    browser
+                        .getTitle().then(function(webpagetitle){
+                        console.log(">>>>>>>>>>HOLA WEB_PAGE_TITLE :: "+webpagetitle);
+                        expect(webpagetitle,JSONLang.AutoTextList[0].HomePageTitle,'User Logged In Successfully','WebPage Title should be '+JSONLang.AutoTextList[0].HomePageTitle);
+                    });
                 });
             });
 
@@ -62,24 +77,6 @@ var util = require('util'),
                     browser.driver.sleep(1000);
                     dashboard_page.dashboard_Logout().click();
                 });
-            });
-
-            it('Login Test Case ', function () {
-
-                helperUtil.setFeature('Practical task');
-                helperUtil.envInfo();
-                helperUtil.setDescription(" 1. Successful Login "+
-                    " 2. Close any popups IF they appear. " +
-                    " 3. Navigate through the pages Slots, Bingo, Casino & Poker and check if you are on the correct page after each navigation." +
-                    " 4. Search for 'Slot on the website in the search games section." +
-                    " 5. Count a number of shown games and select one of them (but not the first or last one)." +
-                    " 6. Confirm that you are on the correct game page." +
-                    " 7. Change the language from English to German." +
-                    " 8. Successfully logout.");
-
-
-                browser.driver.sleep(5000);
-
             });
 
             it('Test Case Scenario ', function () {
@@ -170,8 +167,86 @@ var util = require('util'),
 
                 });
 
+                //Change the Language from English to German
+                common_page.common_LanguageDropDown().click().then(function () {
+                    browser.driver.sleep(1000);
+                    language_page.language_German_De().click();
+                    browser.driver.sleep(9000);
+                });
+
 
             });
 
+        });
+
+        xdescribe('- Approach_2', function () {
+
+            xit('Test Case Scenario ', function () {
+
+                helperUtil.setFeature('Practical task');
+                helperUtil.envInfo();
+                helperUtil.setDescription("1. Successful Login " +
+                    "2. Close any popups IF they appear. " +
+                    "3. Navigate through the pages Slots, Bingo, Casino & Poker and check if you are on the correct page after each navigation." +
+                    "4. Search for 'Slot on the website in the search games section." +
+                    "5. Count a number of shown games and select one of them (but not the first or last one)." +
+                    "6. Confirm that you are on the correct game page." +
+                    "7. Change the language from English to German." +
+                    "8. Successfully logout.");
+
+                browser.ignoreSynchronization = true;
+                browser.get(JSONData.AutoTextList[0].BASE_URL);
+
+
+                login_page.login_closeCookies().isPresent().then(function (isDisplayed){
+
+                    if(isDisplayed === true) {
+
+                        //Login Steps
+                        login_page.login_closeCookies().click().then(function () {
+                            browser.driver.sleep(1000);
+                            helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
+                        });
+                        browser
+                            .getTitle().then(function(webpagetitle){
+                            console.log(">>>>>>>>>>HOLA WEB_PAGE_TITLE :: "+webpagetitle);
+                            helperUtil.Reporter_toBe(webpagetitle,JSONLang.AutoTextList[0].HomePageTitle,'User Logged In Successfully','WebPage Title should be '+JSONLang.AutoTextList[0].HomePageTitle);
+                        });
+
+                        //Logout Steps
+                        dashboard_page.dashboard_Nickname().click().then(function () {
+                            browser.driver.sleep(1000);
+                            dashboard_page.dashboard_Logout().click().then(function () {
+                                browser.driver.sleep(5000);
+                                helperUtil.addStep('Successfully logout.');
+                            });
+
+                        });
+
+                    }
+                    else {
+
+                        //Login Steps
+                        helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
+                        browser
+                            .getTitle().then(function(webpagetitle){
+                            console.log(">>>>>>>>>>HOLA WEB_PAGE_TITLE :: "+webpagetitle);
+                            expect(webpagetitle,JSONLang.AutoTextList[0].HomePageTitle,'User Logged In Successfully','WebPage Title should be '+JSONLang.AutoTextList[0].HomePageTitle);
+                        });
+
+                        //Logout Steps
+                        dashboard_page.dashboard_Nickname().click().then(function () {
+                            browser.driver.sleep(1000);
+                            dashboard_page.dashboard_Logout().click();
+                            browser.driver.sleep(5000);
+                        });
+
+                    }
+                });
+
+
+
+
+            });
         });
     });

@@ -55,11 +55,11 @@
 5. Enter the below mentioned command to update Selenium WebDriver
 	**``npm run update``**
 5. Enter the below mentioned commands to compile and run the whole project:
-	**Run Project** : **``NODE_ENV=production npm test ``**
+	**Run Project** : **``NODE_ENV=production NODE_LANG=en npm test ``**
 	In this case, you can specify Environment type and User type. Environments type can be : production and QA
 6. To run the specific module, we have to pass below mentioned command:
-	**Run Specific Module** :  **``NODE_ENV=EnvironmentName npm run script-name``**
-    **e.g.** :  **``NODE_ENV=production npm run login-test``**
+	**Run Specific Module** :  **``NODE_ENV=EnvironmentName NODE_LANG=Language npm run script-name``**
+    **e.g.** :  **``NODE_ENV=production NODE_LANG=en npm run login-test``**
    
 **Sample** 
 
@@ -70,9 +70,9 @@
 
 | Module Name     |    Production    |    QA          |
 | -------------   | -----------------|----------------|
-| Regression Test | NODE_ENV=production npm test| NODE_ENV=QA npm test|
-| Login           | NODE_ENV=production npm run login-test|NODE_ENV=QA npm run login-test|
-| SANITY          | NODE_ENV=production npm run sanity-test|NODE_ENV=QA npm run sanity-test|
+| Regression Test | NODE_ENV=production NODE_LANG=en npm test| NODE_ENV=QA NODE_LANG=en npm test|
+| Login           | NODE_ENV=production NODE_LANG=en npm run login-test|NODE_ENV=QA NODE_LANG=en npm run login-test|
+| SANITY          | NODE_ENV=production NODE_LANG=en npm run sanity-test|NODE_ENV=QA NODE_LANG=en npm run sanity-test|
 
 
 
