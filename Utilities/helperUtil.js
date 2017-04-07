@@ -8,7 +8,7 @@ var helperUtil = {},
      JSONData_production = require('./../testData/testdata_production.json'),
      JSONData;
 
-     console.log('HOLA login page object received');//JSON.stringify(login_page));
+     //console.log('HOLA login page object received');//JSON.stringify(login_page));
 
      if (process.env.NODE_ENV === 'production') {
         JSONData = JSONData_production;
@@ -31,8 +31,16 @@ var helperUtil = {},
         allure.feature(feature);
      };
 
+     helperUtil.setStory = function (story) {
+        allure.story(story);
+     };
+
+     helperUtil.startStep = function (startStep) {
+        allure.startSuite(startStep,helperUtil.getTodayDateAndTime());
+     };
+
      helperUtil.addStep = function (StepInfo) {
-        console.log(StepInfo);
+        //console.log(StepInfo);
         allure.createStep(StepInfo, function(){
         })();
      };
@@ -53,7 +61,7 @@ var helperUtil = {},
      };
 
      helperUtil.login = function (userName,password) {
-        console.log(JSON.stringify("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+login_page));
+        //console.log(JSON.stringify("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+login_page));
         login_page.login_nickName().sendKeys(userName);
         browser.driver.sleep(1500);
         login_page.login_password().sendKeys(password);

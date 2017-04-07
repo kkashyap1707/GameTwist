@@ -28,7 +28,8 @@ var login_page = function() {
     };
 
     this.login_clickLogIn  = function() {
-        var login_clickLogIn = element(by.css("button.btn.btn--primary"));
+        //var login_clickLogIn = element(by.css("button.btn.btn--primary"));
+        var login_clickLogIn = element(by.xpath("//div[@id='branding__login']/div/fieldset/div[5]/div/button"));
         expect(login_clickLogIn.isPresent()).toBe(true,'Log In Button Not found');
         return login_clickLogIn;
     };
