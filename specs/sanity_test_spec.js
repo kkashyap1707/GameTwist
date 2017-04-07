@@ -203,7 +203,7 @@ var util = require('util'),
 
         xdescribe('- Approach_2', function () {
 
-            xit('Successful Login', function () {
+            it('Successful Login', function () {
 
                 helperUtil.setFeature('Practical task');
                 helperUtil.setStory('In this case, all the test steps performed individually');
