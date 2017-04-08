@@ -79,9 +79,9 @@ var util = require('util'),
                         JSONLang = require('./../language/lang_'+ currentURL.split('/')[3] +'.json');
                     });
 
-                    //Validate WebPage title
-                    browser.getTitle().then(function(webPageTitle){
-                        helperUtil.Reporter_toBe(webPageTitle,JSONLang.AutoTextList[0].HomePageTitle,'User Logged In Successfully','WebPage Title should be '+JSONLang.AutoTextList[0].HomePageTitle);
+                    //Validate Login
+                    dashboard_page.dashboard_Nickname().getText().then(function (validateLogin) {
+                        helperUtil.Reporter_toBe(validateLogin,JSONData.AutoTextList[0].NickName,"User Logged In Successfully and Nickname is ::"+validateLogin,"User not Logged In Successfully");
                     });
                 }
             });
