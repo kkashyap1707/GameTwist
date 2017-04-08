@@ -11,6 +11,7 @@ exports.config = {
 
     specs: [
         'specs/sanity_test_spec.js',
+        /*'specs/login_test_spec.js',*/
     ],
 
     capabilities: {

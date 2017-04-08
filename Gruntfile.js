@@ -1,6 +1,7 @@
 /**
- * Created by Keshav on 11/2/2016.
+ * Created by Keshav on 04/04/2017.
  */
+
 module.exports = function(grunt) {
 
 //var path = require('path');
@@ -49,9 +50,6 @@ module.exports = function(grunt) {
                 keepAlive: true,
                 configFile: "conf.js",
                 args: {
-                    /*//seleniumServerJar: '../../../node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-2.53.1.jar',
-                    seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
-                    chromeDriver: '../../../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.26'*/
 
                     seleniumServerJar: './node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-2.53.1.jar',
                     seleniumAddress: 'http://127.0.0.1:4444/wd/hub',

@@ -40,7 +40,6 @@ var helperUtil = {},
      };
 
      helperUtil.addStep = function (StepInfo) {
-        //console.log(StepInfo);
         allure.createStep(StepInfo, function(){
         })();
      };
@@ -128,8 +127,6 @@ var helperUtil = {},
         return browser.wait(EC.presenceOf(_element));
      };
 
-
-
      helperUtil.selectDropDownByNum = function (elem, optionNum ) {
         if (optionNum){
             elem.$$('option')
@@ -138,7 +135,6 @@ var helperUtil = {},
             });
         }
      };
-
 
      //Generate Random Email Address
      helperUtil.dummyEmailAddress = function () {

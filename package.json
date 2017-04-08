@@ -6,7 +6,8 @@
   "scripts": {
     "update": "webdriver-manager update",
     "test": "grunt test",
-    "poc-test": "protractor conf.js --specs='specs/poc_test_spec.js' && mvn site"
+    "login-test": "protractor conf.js --specs='specs/login_test_spec.js' && mvn site",
+    "sanity-test": "protractor conf.js --specs='specs/sanity_test_spec.js' && mvn site"
   },
   "keywords": [
     "jenkins",

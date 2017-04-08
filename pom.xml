@@ -50,7 +50,7 @@
                             <outputDirectory>${basedir}/allure-results</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>Resources</directory>
+                                    <directory>resources</directory>
                                     <includes>
                                         <include>environment.xml</include>
                                     </includes>

@@ -1,5 +1,5 @@
 /**
- * Created by Keshav on 10/16/2016.
+ * Created by Keshav on 04/04/2017.
  */
 
 var util = require('util'),
@@ -9,152 +9,84 @@ var util = require('util'),
     helperUtil = require('./../Utilities/helperUtil'),
 
     JSONData_production = require('./../testData/testdata_production.json'),
-    JSONData;
-
-console.log("ENVIRONMENT IS :: "+process.env.NODE_ENV);
-
-if (process.env.NODE_ENV === 'production') {
-    JSONData = JSONData_production;
-}
+    JSONData_QA = require('./../testData/testdata_QA.json'),
+    JSONData,JSONLang;
 
 
-console.log(JSONData.AutoTextList[0].BASE_URL);
+    console.log("ENVIRONMENT IS :: "+process.env.NODE_ENV);
 
-describe('Test Login Flow ', function () {
+    if (process.env.NODE_ENV === 'production') {
+        JSONData = JSONData_production;
+    }
+    else if(process.env.NODE_ENV === 'QA'){
+        JSONData = JSONData_QA;
+    }
 
-    it('Test UserName and Password Input Fields', function () {
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-        browser.driver.sleep(3000);
+    console.log(JSONData.AutoTextList[0].BASE_URL);
 
-        expect(login_page.login_Element_UserName().isDisplayed()).toBeTruthy();
-        expect(login_page.login_Element_Password().isDisplayed()).toBeTruthy();
+    describe('Test Login Flow ', function () {
 
-    });
+        //Test Case 1 : Check Successful Login
+        it('Successful Login', function () {
 
-    it('Test SignIn Text,Close Button,Remember me,Forgot Password,SignIn Button and Request for a Demo Link',function () {
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-        browser.driver.sleep(3000);
+            helperUtil.setFeature('Practical task');
+            helperUtil.setStory('In this case, all the test steps performed individually');
+            helperUtil.envInfo();
+            helperUtil.setDescription("1. Successful Login ");
 
-        expect(login_page.login_Element_SignIn().isDisplayed()).toBeTruthy();
-        expect(login_page.login_Element_Close().isDisplayed()).toBeTruthy();
-        expect(login_page.login_Element_RememberMe().isDisplayed()).toBeTruthy();
-        expect(login_page.login_Element_ForgotPassword().isDisplayed()).toBeTruthy();
-        expect(login_page.login_Element_SignInButtonLink().isDisplayed()).toBeTruthy();
-        expect(login_page.login_Element_RequestForADemo().isDisplayed()).toBeTruthy();
+            //Set True for Non-angular Page
+            browser.ignoreSynchronization = true;
 
-    });
-
-    it('Test clicking on Cross Button, User should Redirect to Home Page ', function () {
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-        browser.driver.sleep(3000);
-
-        login_page.login_Element_Close().click();
-        browser.driver.sleep(3000);
-        expect(browser.driver.getCurrentUrl()).toContain("https://www.insight360.io/");
-        browser.driver.sleep(2000);
-    });
-
-    it('After Successful Login , User Redirected to DashBoard Page', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.AutoTextList[0].UserName, JSONData.AutoTextList[0].Password);
-        browser.driver.sleep(2000);
-        dashboard_page.dashboard_Header().then(function (headerText) {
-            expect(headerText).toBe('Dashboard');
-        });
-        browser.driver.sleep(2000);
-
-        helperUtil.logout();
-    });
-
-    it('Login using SASB User', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.AutoTextList[0].UserName, JSONData.AutoTextList[0].Password);
-
-        browser.driver.sleep(2000);
-        helperUtil.logout();
-    });
-
-    it('Login using Non SASB User', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.Non_SASBUser.Non_SASBUserName, JSONData.Non_SASBUser.Non_SASBPassword);
-
-        browser.driver.sleep(2000);
-        helperUtil.logout();
-    });
-
-    it('Test Invalid Username and Valid Password ', function () {
-
-
+            //Launch the browser and navigate to page
             browser.get(JSONData.AutoTextList[0].BASE_URL);
-            isAngularSite(true);
 
-            helperUtil.login(JSONData.AutoTextList[0].InvalidUserName, JSONData.AutoTextList[0].Password);
-            expect(login_page.invalidCredentials_NoAccountExist().getText()).toEqual('Sign on failed: No account exists for this email');
+            //Check for cookies on the page
+            login_page.login_closeCookies().isPresent().then(function (isDisplayed){
 
+                if(isDisplayed === true) {
+                    helperUtil.addStep("Cookies displayed on the page");
+
+                    //Login Steps
+                    login_page.login_closeCookies().click().then(function () {
+                        helperUtil.addStep("Cookies closed successfully");
+                        browser.driver.sleep(3000);
+                        helperUtil.addStep("Nickname is :: "+JSONData.AutoTextList[0].NickName);
+                        helperUtil.addStep("Password is :: "+JSONData.AutoTextList[0].Password);
+                        helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
+                        browser.driver.sleep(3000);
+                        helperUtil.addStep("Login Successfully");
+
+                        //Get Current URL
+                        browser.getCurrentUrl().then(function (currentURL) {
+                            JSONLang = require('./../language/lang_'+ currentURL.split('/')[3] +'.json');
+                        });
+
+                        //Validate Login
+                        dashboard_page.dashboard_Nickname().getText().then(function (validateLogin) {
+                            helperUtil.Reporter_toBe(validateLogin,JSONData.AutoTextList[0].NickName,"User Logged In Successfully and Nickname is ::"+validateLogin,"User not Logged In Successfully");
+                        });
+                    });
+
+
+                }
+                else {
+
+                    //Login Steps
+                    helperUtil.login(JSONData.AutoTextList[0].NickName,JSONData.AutoTextList[0].Password);
+
+                    //Get Current URL
+                    browser.getCurrentUrl().then(function (currentURL) {
+                        JSONLang = require('./../language/lang_'+ currentURL.split('/')[3] +'.json');
+                    });
+
+                    //Validate WebPage title
+                    browser.getTitle().then(function(webPageTitle){
+                        helperUtil.Reporter_toBe(webPageTitle,JSONLang.AutoTextList[0].HomePageTitle,'User Logged In Successfully','WebPage Title should be '+JSONLang.AutoTextList[0].HomePageTitle);
+                    });
+                }
+            });
         });
 
-    it('Test Invalid Password and Valid Username ', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.AutoTextList[0].UserName, JSONData.AutoTextList[0].InvalidPassword);
-        expect(login_page.invalidCredentials_InvalidPassword()).toEqual('Sign on failed: Invalid Credentials');
-
-    });
-
-    it('Test Invalid UserName and Invalid Password ', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.AutoTextList[0].InvalidUserName, JSONData.AutoTextList[0].InvalidPassword);
-        expect(login_page.invalidCredentials_NoAccountExist()).toEqual('Sign on failed: No account exists for this email');
-
-    });
-
-    it('Test Blank UserName and Blank Password ', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.AutoTextList[0].BlankUserName, JSONData.AutoTextList[0].BlankPassword);
-        expect(login_page.invalidCredentials_userName()).toEqual('Please enter your e-mail address.');
-        expect(login_page.invalidCredentials_Password()).toEqual('Please enter your password.');
-
-    });
-
-    it('Test Blank UserName and Valid Password ', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.AutoTextList[0].BlankUserName, JSONData.AutoTextList[0].Password);
-        expect(login_page.invalidCredentials_userName()).toEqual('Please enter your e-mail address.');
-
-    });
-
-    it('Test Valid UserName and Blank Password', function () {
-
-        browser.get(JSONData.AutoTextList[0].BASE_URL);
-        isAngularSite(true);
-
-        helperUtil.login(JSONData.AutoTextList[0].UserName, JSONData.AutoTextList[0].BlankPassword);
-        expect(login_page.invalidCredentials_Password()).toEqual('Please enter your password.');
-
-    });
 
 });
 
